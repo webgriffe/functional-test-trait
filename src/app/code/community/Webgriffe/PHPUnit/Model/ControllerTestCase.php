@@ -30,7 +30,7 @@ class Webgriffe_PHPUnit_Model_ControllerTestCase extends EcomDev_PHPUnit_Test_Ca
                 'to open in browser).'
             );
         }
-        $tmpFile = tempnam(sys_get_temp_dir(), 'tmf_response_') . '.html';
+        $tmpFile = tempnam(sys_get_temp_dir(), 'response_') . '.html';
         file_put_contents($tmpFile, $client->getResponse()->getContent());
         exec(sprintf($openCommand, $tmpFile));
     }
