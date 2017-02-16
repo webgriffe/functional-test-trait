@@ -1,4 +1,16 @@
-Webgriffe PHPUnit
-===================
+Webgriffe Functional Test Trait
+===============================
 
-Simple extension of EcomDev PHPUnit with Symfony BrowserKit and CGIHttpKernel
+Trait which enables functional testing in Magento with EcomDev_PHPUnit and using a CgiHttpKernel.
+
+Installation
+------------
+
+Import it using composer:
+
+    composer require webgriffe/functional-test-trait
+    
+Usage
+-----
+
+

@@ -1,8 +1,8 @@
 {
-    "name": "webgriffe/webgriffe-phpunit",
-    "type": "magento-module",
+    "name": "webgriffe/functional-test-trait",
+    "type": "library",
     "license":"MIT",
-    "description":"Extension description here",
+    "description":"Trait which enables functional testing in Magento with EcomDev_PHPUnit and using a CgiHttpKernel.",
     "authors":[
         {
             "name":"Webgriffe SRL",
@@ -10,14 +10,15 @@
         }
     ],
     "require-dev": {
+        "magento/core": "*",
         "ecomdev/ecomdev_phpunit": "^0.3.7",
         "igorw/cgi-http-kernel": "^1.0",
         "symfony/browser-kit": "^3.2"
     },
-    "repositories": {
-        "firegento": {
-            "type": "composer",
-            "url": "https://packages.firegento.com"
-        }
+    "autoload": {
+        "files": ["src/Webgriffe_FunctionalTest_Trait.php"]
+    },
+    "suggest": {
+        "symfony/css-selector": "Allows to filter DOM elements with CSS selectors."
     }
 }

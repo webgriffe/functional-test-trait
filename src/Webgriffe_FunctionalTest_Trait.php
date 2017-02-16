@@ -1,25 +1,32 @@
 <?php
 
+use Igorw\CgiHttpKernel\CgiHttpKernel;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpKernel\Client;
 
-class Webgriffe_PHPUnit_Model_ControllerTestCase extends EcomDev_PHPUnit_Test_Case
+trait Webgriffe_FunctionalTest_Trait
 {
     /**
      * @param bool $setXdebugCookie
-     * @return \Symfony\Component\HttpKernel\Client
+     * @return Client
      */
     protected static function createClient($setXdebugCookie = false)
     {
-        $client = new \Symfony\Component\HttpKernel\Client(
-            new \Igorw\CgiHttpKernel\CgiHttpKernel(Mage::getBaseDir(), 'index.php'),
+        $client = new Client(
+            new CgiHttpKernel(Mage::getBaseDir(), 'index.php'),
             ['HTTP_HOST' => parse_url(Mage::getBaseUrl(), PHP_URL_HOST)]
         );
         if ($setXdebugCookie) {
-            $client->getCookieJar()->set(new \Symfony\Component\BrowserKit\Cookie('XDEBUG_SESSION', 'PHPSTORM'));
+            $client->getCookieJar()->set(new Cookie('XDEBUG_SESSION', 'PHPSTORM'));
         }
         return $client;
     }
 
-    protected static function openResponseInBrowser(\Symfony\Component\HttpKernel\Client $client)
+    /**
+     * @param Client $client
+     * @throws \RuntimeException
+     */
+    protected static function openResponseInBrowser(Client $client)
     {
         $openCommand = (string)Mage::getConfig()->getNode('phpunit/browser/open_command');
         if (!$openCommand) {
