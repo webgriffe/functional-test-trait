@@ -1,0 +1,26 @@
+{
+    "name": "webgriffe/webgriffe_phpunit",
+    "type": "magento-module",
+    "license":"MIT",
+    "description":"Extension description here",
+    "authors":[
+        {
+            "name":"Webgriffe SRL",
+            "email":"support@webgriffe.com"
+        }
+    ],
+    "require-dev": {
+        "ecomdev/ecomdev_phpunit": "^0.3.7",
+        "igorw/cgi-http-kernel": "^1.0",
+        "symfony/browser-kit": "^3.2"
+    },
+    "repositories": {
+        "firegento": {
+            "type": "composer",
+            "url": "https://packages.firegento.com"
+        }
+    },
+    "extra": {
+        "magento-root-dir": "root"
+    }
+}
