@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Webgriffe_PHPUnit>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Webgriffe_PHPUnit>
+    </modules>
+</config>

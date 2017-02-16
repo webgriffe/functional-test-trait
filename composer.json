@@ -1,5 +1,5 @@
 {
-    "name": "webgriffe/webgriffe_phpunit",
+    "name": "webgriffe/webgriffe-phpunit",
     "type": "magento-module",
     "license":"MIT",
     "description":"Extension description here",
@@ -19,8 +19,5 @@
             "type": "composer",
             "url": "https://packages.firegento.com"
         }
-    },
-    "extra": {
-        "magento-root-dir": "root"
     }
 }
