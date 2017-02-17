@@ -9,8 +9,7 @@
             "email":"support@webgriffe.com"
         }
     ],
-    "require-dev": {
-        "magento/core": "*",
+    "require": {
         "igorw/cgi-http-kernel": "^1.0",
         "symfony/browser-kit": "^3.2"
     },
