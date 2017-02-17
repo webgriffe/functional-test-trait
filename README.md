@@ -16,8 +16,7 @@ Usage
 The suggested usage of this trait is in combination with [EcomDev_PHPUnit](https://github.com/EcomDev/EcomDev_PHPUnit) and the [Webgriffe's Magento Config Extension](https://github.com/webgriffe/config-extension).
 So, first of all, add these dependencies to your Magento project:
 
-	$ composer require --dev webgriffe/functional-test-trait \
-		ecomdev/ecomdev_phpunit
+	$ composer require --dev webgriffe/functional-test-trait ecomdev/ecomdev_phpunit
 	$ composer require webgriffe/config-extension
 	
 Another suggested dependency is `symfony/css-selector`, which allows to select DOM elements using CSS selectors in your functional tests:
@@ -67,7 +66,19 @@ Put a test your `tests/` directory. For example, `HomepageTest.php`:
 	    }
 	}
 	
-As you may notice there is the `@loadFixture` annotation which loads data from `category.yaml` file located at `tests/HomepageTest/fixtures/category.yaml`.
+As you may notice there is the `@loadFixture` annotation which loads data from `category.yaml` file located at `tests/HomepageTest/fixtures/category.yaml` which content could be:
+
+	eav:
+	  catalog_category:
+	    - entity_id: 3
+	      name: My Category
+	      parent_id: 2
+	      path: 1/2/3
+	      level: 2
+	      url_key: my-category
+	      is_active: 1
+	      include_in_menu: 1
+
 
 License
 -------
