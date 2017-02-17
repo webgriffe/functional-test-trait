@@ -11,7 +11,6 @@
     ],
     "require-dev": {
         "magento/core": "*",
-        "ecomdev/ecomdev_phpunit": "^0.3.7",
         "igorw/cgi-http-kernel": "^1.0",
         "symfony/browser-kit": "^3.2"
     },
@@ -19,6 +18,8 @@
         "files": ["src/Webgriffe_FunctionalTest_Trait.php"]
     },
     "suggest": {
+        "ecomdev/ecomdev_phpunit": "Allows to load fixtures before your functional tests.",
+        "webgriffe/config-extension": "Allows to use the EcomDev_PHPUnit database in your functional tests.",
         "symfony/css-selector": "Allows to filter DOM elements with CSS selectors."
     }
 }
