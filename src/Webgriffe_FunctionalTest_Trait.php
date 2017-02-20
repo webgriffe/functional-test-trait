@@ -7,16 +7,23 @@ use Symfony\Component\HttpKernel\Client;
 trait Webgriffe_FunctionalTest_Trait
 {
     /**
+     * @param Mage_Core_Model_Website $website
      * @param bool $setXdebugCookie
      * @return Client
+     * @throws \RuntimeException
      */
-    protected static function createClient($setXdebugCookie = false)
+    protected static function createClient(Mage_Core_Model_Website $website = null, $setXdebugCookie = false)
     {
         $phpCgiBin = (string)Mage::getConfig()->getNode('phpunit/functional/php_cgi_bin') ?: 'php-cgi';
-        $client = new Client(
-            new CgiHttpKernel(Mage::getBaseDir(), 'index.php', $phpCgiBin),
-            ['HTTP_HOST' => parse_url(Mage::getBaseUrl(), PHP_URL_HOST)]
-        );
+        $baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+        $server = [];
+        if ($website) {
+            $baseUrl = $website->getDefaultStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+            $server['MAGE_RUN_TYPE'] = 'website';
+            $server['MAGE_RUN_CODE'] = $website->getCode();
+        }
+        $server['HTTP_HOST'] = parse_url($baseUrl, PHP_URL_HOST);
+        $client = new Client(new CgiHttpKernel(Mage::getBaseDir(), 'index.php', $phpCgiBin), $server);
         if ($setXdebugCookie) {
             $xdebugSession = (string)Mage::getConfig()->getNode('phpunit/functional/xdebug_session');
             if (!$xdebugSession) {

@@ -94,6 +94,18 @@ eav:
       include_in_menu: 1
 ```
 
+Multiple website supported
+--------------------------
+
+If you want you can create a client for different websites:
+
+```php
+$secondaryWebsite = Mage::app()->getWebsite('otherwebsite');
+$client = self::createClient($secondaryWebsite);
+```
+
+This will use the secondary website base URL and sets the `MAGE_RUN_TYPE` and `MAGE_RUN_CODE` environment variables.
+
 Test debug with xDebug
 ----------------------
 
@@ -121,7 +133,7 @@ Open response in browser
 Sometimes is useful to open last response returned by Magento in your browser for further analysis. To do so you can use the `openResponseInBrowser()` method, for example:
 
 ```php
-$client = self::createClient(true);
+$client = self::createClient();
 $client->request('GET', '/');
 self::openResponseInBrowser($client)
 ```
