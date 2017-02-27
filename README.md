@@ -29,23 +29,7 @@ Another suggested dependency is `symfony/css-selector`, which allows to select D
 $ composer require --dev symfony/css-selector
 ```
 
-Then setup your test suite as usual with EcomDev_PHPUnit and in your `phpunit.xml.dist` add the following environment variable in the `<php>` XML node:
-
-```xml
-<server name="MAGE_LOAD_ECOMDEV_PHPUNIT_CONFIG" value="1" />
-```
-	
-This environment variable tells to the Webgriffe's Magento Config Extension to load the EcomDev\_PHPUnit base config file (located at `app/etc/local.phpunit.xml`). In this way, during your functional tests, the Magento application will use the same test database used by other EcomDev\_PHPUnit tests and you'll also be able to load fixtures.
-Note that doing so, for EcomDev\_PHPUnit, test DB is the same as the live one and such situation needs to be permitted by setting the config `phpunit/allow_same_db` to `1` in `app/etc/local.phpunit.xml`:
-
-```xml
-<config>
-   <!-- ... -->   
-   <phpunit>
-      <allow_same_db>1</allow_same_db>
-   </phpunit>
-</config>
-```
+Then setup your test suite as usual with EcomDev_PHPUnit.
 
 Also you can add a `<testsuite>` node to your `phpunit.xml.dist` to group your functional tests in a dedicated test suite:
 
