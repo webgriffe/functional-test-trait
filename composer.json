@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "igorw/cgi-http-kernel": "^1.0",
+        "webgriffe/cgi-http-kernel": "^1.0",
         "symfony/browser-kit": "^3.2"
     },
     "autoload": {
