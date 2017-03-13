@@ -28,6 +28,7 @@ trait Webgriffe_FunctionalTest_Trait
         }
         $server['HTTP_HOST'] = parse_url($baseUrl, PHP_URL_HOST);
         $server['MAGE_LOAD_ECOMDEV_PHPUNIT_CONFIG'] = true;
+        $server['MAGE_IS_DEVELOPER_MODE'] = true;
         $server['MAGE_ENVIRONMENT'] = $mageEnvironment;
         $client = new Client(new CgiHttpKernel(Mage::getBaseDir(), 'index.php', $phpCgiBin), $server);
         if ($setXdebugCookie) {
