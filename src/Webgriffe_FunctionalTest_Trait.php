@@ -30,7 +30,11 @@ trait Webgriffe_FunctionalTest_Trait
         $server['MAGE_LOAD_ECOMDEV_PHPUNIT_CONFIG'] = true;
         $server['MAGE_IS_DEVELOPER_MODE'] = true;
         $server['MAGE_ENVIRONMENT'] = $mageEnvironment;
-        $client = new Client(new CgiHttpKernel(Mage::getBaseDir(), 'index.php', $phpCgiBin), $server);
+        $cgiHttpKernel = new CgiHttpKernel(Mage::getBaseDir(), 'index.php', $phpCgiBin);
+        if ($setXdebugCookie) {
+            $cgiHttpKernel = new CgiHttpKernel(Mage::getBaseDir(), 'index.php', $phpCgiBin, null);
+        }
+        $client = new Client($cgiHttpKernel, $server);
         if ($setXdebugCookie) {
             $xdebugSession = (string)Mage::getConfig()->getNode('phpunit/functional/xdebug_session');
             if (!$xdebugSession) {
