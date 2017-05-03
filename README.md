@@ -145,6 +145,16 @@ This will dump the last response's content in a temporary file and opens it with
 </config>
 ```
 
+Different front controller
+--------------------------
+
+It's also possible to specify an alternative front controller instead of `index.php`. This is extremely useful when you have to serve static file through the front controller `get.php` provided by Magento:
+
+```php
+$staticFilesClient = self::createClient(null, false, 'test', 'get.php');
+$staticFilesClient->request('GET', '/path/to/media/file.jpg');
+```
+
 License
 -------
 
