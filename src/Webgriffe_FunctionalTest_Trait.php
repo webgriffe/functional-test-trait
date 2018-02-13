@@ -9,15 +9,14 @@ trait Webgriffe_FunctionalTest_Trait
     /**
      * @param Mage_Core_Model_Website $website
      * @param bool $setXdebugCookie
-     * @param string $mageEnvironment
      * @param string $frontController
      * @return Client
      * @throws \RuntimeException
+     * @throws Mage_Core_Exception
      */
     protected static function createClient(
         Mage_Core_Model_Website $website = null,
         $setXdebugCookie = false,
-        $mageEnvironment = 'test',
         $frontController = 'index.php'
     ) {
         $phpCgiBin = (string)Mage::getConfig()->getNode('phpunit/functional/php_cgi_bin') ?: 'php-cgi';
@@ -30,8 +29,8 @@ trait Webgriffe_FunctionalTest_Trait
         }
         $server['HTTP_HOST'] = parse_url($baseUrl, PHP_URL_HOST);
         $server['MAGE_LOAD_ECOMDEV_PHPUNIT_CONFIG'] = true;
-        $server['MAGE_IS_DEVELOPER_MODE'] = true;
-        $server['MAGE_ENVIRONMENT'] = $mageEnvironment;
+        $server['MAGE_IS_DEVELOPER_MODE'] = 1;
+        $server['MAGE_ENVIRONMENT'] = $_SERVER['MAGE_ENVIRONMENT'];
         $cgiHttpKernel = new CgiHttpKernel(Mage::getBaseDir(), $frontController, $phpCgiBin);
         if ($setXdebugCookie) {
             $cgiHttpKernel = new CgiHttpKernel(Mage::getBaseDir(), $frontController, $phpCgiBin, null);

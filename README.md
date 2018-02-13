@@ -39,6 +39,31 @@ Also you can add a `<testsuite>` node to your `phpunit.xml.dist` to group your f
 </testsuite>
 ``` 
 
+Also, to avoid session issues, you should make sure that the `base_url` is always the same during tests setup and tests run. You can do this by setting the `MAGE_ENVIRONMENT` server variable through your `phpunit.xml.dist`:
+
+```xml
+<php>
+    <server name="MAGE_ENVIRONMENT" value="test" />
+</php>
+```
+And then set the `base_url` with the override configuration file for that environment (`app/etc/config-override.test.xml.dist`), with the content:
+
+```xml
+<?xml version="1.0"?>
+<config>
+    <default>
+        <web>
+            <secure>
+                <base_url>http://url-functional.test/</base_url>
+            </secure>
+            <unsecure>
+                <base_url>http://url-functional.test/</base_url>
+            </unsecure>
+        </web>
+    </default>
+</config>
+```
+
 Now you're ready to write your first Magento functional test. 
 Put a test your `tests/` directory. For example, `HomepageTest.php`:
 
